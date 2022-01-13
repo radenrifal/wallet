@@ -1,9 +1,87 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div class="about-info">
+          <h3 class="ion-padding-top ion-padding-start">Account</h3>
+          <p class="ion-padding-start ion-padding-end">
+            <ion-avatar>
+              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            </ion-avatar><br>
+            <b>Raden Rifal Ardiansyah</b> <br>
+            Software Engneering
+          </p>
+      
+          <h3 class="ion-padding-top ion-padding-start">Details</h3>
+      
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>
+                Location
+              </ion-label>
+              <ion-select [(ngModel)]="location" [interfaceOptions]="selectOptions">
+                <ion-select-option value="madison">Madison, WI</ion-select-option>
+                <ion-select-option value="austin">Austin, TX</ion-select-option>
+                <ion-select-option value="chicago">Chicago, IL</ion-select-option>
+                <ion-select-option value="seattle">Seattle, WA</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item button="true" id="open-date-input">
+              <ion-label>
+                Date
+              </ion-label>
+              <ion-text slot="end">{{ conferenceDate | date: 'mediumDate' }}</ion-text>
+              <ion-popover id="date-input-popover" trigger="open-date-input" [showBackdrop]="false" side="top" alignment="end">
+                <ng-template>
+                  <ion-datetime max="2056" [(ngModel)]="conferenceDate" presentation="date"></ion-datetime>
+                </ng-template>
+              </ion-popover>
+            </ion-item>
+          </ion-list>
+      
+          <h3 class="ion-padding-top ion-padding-start">Internet</h3>
+      
+          <ion-list lines="none">
+            <ion-item>
+              <ion-label>
+                Wifi network
+              </ion-label>
+              <ion-label class="ion-text-end">
+                ica{{conferenceDate | date: 'y'}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Password
+              </ion-label>
+              <ion-label class="ion-text-end">
+                makegoodthings
+              </ion-label>
+            </ion-item>
+          </ion-list>
 
+          <ion-list lines="none">
+            <ion-item (click)="updatePicture()">Update Picture</ion-item>
+            <ion-item (click)="changeUsername()">Change Username</ion-item>
+            <ion-item (click)="changePassword()">Change Password</ion-item>
+            <ion-item (click)="support()">Support</ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="block" color="primary" routerDirection="forward" (click)="logout()">Logout</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
