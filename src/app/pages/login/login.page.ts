@@ -70,12 +70,17 @@ export class LoginPage implements OnInit {
           this.loadingCtrl.dismiss();
         });
         */  
+       
+        this.router.navigateByUrl('tabs');
+        /*
         this.login().then((data: any) => {
           this.loadingCtrl.dismiss();
           this.router.navigateByUrl('tabs');
         }).catch(err => {
           this.loadingCtrl.dismiss();
         });
+        */
+       this.loadingCtrl.dismiss();
       });
     } 
   }  
