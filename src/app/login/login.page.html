@@ -1,0 +1,36 @@
+<ion-content>
+  <section class="login">
+    <div>
+      <ion-img src="/assets/icon/favicon.png" class="logo"></ion-img>
+      <h5>Welcome Back to Wallet</h5>
+      <form [formGroup]="login_forms">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" name="email" formControlName="email" required></ion-input>
+        </ion-item>
+        <ng-template [ngIf]="login_forms.controls.email.errors != null && login_forms.controls.email.errors.hasOwnProperty('required') && submitAttempt">
+          <ion-item lines="none">
+            <ion-text color="danger"><p>Email is required</p></ion-text>
+          </ion-item>            
+        </ng-template> 
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" name="password" formControlName="password" required></ion-input>
+        </ion-item>
+        <ng-template [ngIf]="!login_forms.controls.password.valid && submitAttempt">
+          <ion-item lines="none">
+            <ion-text color="danger"><p>Password is required</p></ion-text>
+          </ion-item>
+        </ng-template>
+        <br />
+        <ion-button expand="block" color="primary" routerDirection="forward" (click)="login()">Login</ion-button>
+        <ion-text color="medium">
+          <p class="link" routerDirection="forward" routerLink="/forgot-password">Forgot your Password?</p>
+        </ion-text>
+        <ion-text color="medium">
+          <p>Don't have an account yet? </p><ion-text color="primary"><p class="link" routerDirection="forward" routerLink="/register" color="primary">Register</p></ion-text>
+        </ion-text>
+      </form>
+    </div>
+  </section>
+</ion-content>  
